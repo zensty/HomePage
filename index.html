@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <!--=============== CHART ===============-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js" integrity="sha512-GMGzUEevhWh8Tc/njS0bDpwgxdCJLQBWG3Z2Ct+JGOpVnEmjvNx6ts4v6A2XJf1HOrtOsfhv3hBKpK9kE5z8AQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+        <!--=============== FAVICON ===============-->
+        <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon/favicon-16x16.png">
+        <link rel="manifest" href="assets/img/favicon/site.webmanifest">
+        <link rel="mask-icon" href="assets/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
+        
+        <!--=============== BOXICONS ===============-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+        
+        <!--=============== SWIPER CSS ===============--> 
+        <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+
+        <!--=============== CSS ===============--> 
+        <link rel="stylesheet" href="assets/css/styles.css">
+
+        <!--=============== DApp ===============-->
+        <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+        <script type="text/javascript">
+
+            var url = 'https://ropsten.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161';
+            var userAddress;
+            var saveAddress;
+            var copyAddress = '...';
+
+            console.log("init 82");
+
+            initWeb3();
+
+            function initWeb3(){
+                if (typeof web3 !== 'undefined') {
+                    // Mist/MetaMask의 프로바이더 사용
+                    console.log("C window.ethereum.isConnected() = "+window.ethereum.isConnected());
+                    web3 = new Web3(window.ethereum);
+                } else {
+                    // 사용자가 Metamask를 설치하지 않은 경우에 대해 처리
+                    // 사용자들에게 Metamask를 설치하라는 등의 메세지를 보여줄 것
+                    console.log("D window.ethereum.isConnected() = "+window.ethereum.isConnected());
+                    web3 = new Web3(new Web3.providers.HttpProvider(url));
+                }
+            }
+
+            async function chainConnect(){
+
+                let x = document.getElementsByClassName("button button--ghost")[0];
+
+                if(x.innerText == 'Connect')
+                {
+                     if (window.ethereum) {
+
+                        try {
+
+                            userAddress = await window.ethereum.request({ method: 'eth_requestAccounts' });
+
+                            repet();
+
+                        } catch (error) {
+
+                            if (error.code === 4001) {
+                                // User rejected request
+                            }
+
+                            console.log("error code = "+error);
+
+                        }
+
+                    }
+
+                    // Non-dapp browsers...
+                    else {
+                        alert("Please install meta mask.");
+                    }
+                    
+                }
+
+            }
+
+            async function repet(){
+
+                let checkAccountChange = setInterval(async function() {
+
+                    userAddress = await window.ethereum.request({ method: 'eth_requestAccounts' });
+
+                    if (saveAddress !== userAddress) {
+
+                        saveAddress = userAddress;
+
+                        let x = document.getElementsByClassName("button button--ghost")[0];
+                        x.innerText = String(userAddress).substr(0, 6)+copyAddress;
+
+                    }
+
+                }, 1000);
+
+            }
+
+        </script>
+
+        <title>ZENSTY</title>
+
+    </head>
+
+    <body>
+        <!--==================== HEADER ====================-->
+        <header class="header" id="header">        
+            <nav class="nav container">
+                <a href="#" class="nav__logo">ZENSTY</a>
+                <div class="nav__menu" id="nav-menu">
+
+                    <ul class="nav__list">
+                        <li class="nav__item">
+                            <a href="#about" class="nav__link">About</a>
+                        </li>
+
+                        <li class="nav__item">
+                            <a href="#" class="nav__link">Whitepaper</a>
+                        </li>
+
+                        <li class="nav__item">
+                            <a href="#phase" class="nav__link">Road-Map</a>
+                        </li>
+
+                        <li class="nav__item">
+                            <a href="#games" class="nav__link">Games</a>
+                        </li>
+
+                        <li class="nav__item">
+                            <a href="https://twitter.com/zensty_chain" target="_blank" class='footer__social-link'><i class='bx bxl-twitter'></i></a>
+                            <a href="https://t.me/zst_community/" target="_blank" class='footer__social-link'><i class='bx bxl-telegram'></i></a>
+                            <a href="https://medium.com/@zensty" target="_blank" class='footer__social-link'><i class='bx bxl-medium'></i></a>
+                        </li>
+
+                        <a href="#" class="button button--ghost" onclick="chainConnect()">Connect</a>
+
+                    </ul>
+
+                    <div class="nav__close" id="nav-close">
+                        <i class='bx bx-x'></i>
+                    </div>
+                </div>
+
+                <div class="nav__toggle" id="nav-toggle">
+                    <i class='bx bx-grid-alt'></i>
+                </div>
+
+            </nav>
+        </header>
+
+        <main class="main">
+            <!--==================== VIDEO ====================-->
+            <img src="video.jpg" class="bg_img">
+            <div class="overlay"></div>
+
+            <!--==================== HOME ====================-->
+            <section class="home container" id="home">
+                <br><br><br><br><br><br><br><br><br><br><br>
+                <div class="about__container container grid">
+
+                    <div class="about__data">
+                        <h2 class="section__title about__title">GAME FINANCE <br>NFT MULTIVERSE</h2>
+                        <p class="about__description">Perfect Play to Earn</p>
+                    </div>
+
+                </div>
+            </section>
+
+            <br><br><br><br><br><br>
+            <br><br><br><br><br><br><br>
+            <!--==================== CATEGORY ====================-->
+            <section class="section category">
+                <h2 class="section__title">Features</h2>
+
+                <div class="category__container container grid">
+                    <div class="category__data">
+                        <img src="assets/img/zstsymbol512.png" alt="" class="category__img">
+                        <h3 class="category__title">ZST Token</h3>
+                        <p class="category__description">in Game Token</p>
+                    </div>
+
+                    <div class="category__data">
+                        <img src="assets/img/mobile-android.svg" alt="" class="category__img">
+                        <h3 class="category__title">Mobile App</h3>
+                        <p class="category__description">Blockchain in Mobile</p>
+                    </div>
+
+                    <div class="category__data">
+                        <img src="assets/img/bsc.png" alt="" class="category__img">
+                        <h3 class="category__title">BSC</h3>
+                        <p class="category__description">BINANCE SMART CHAIN</p>
+                    </div>
+                </div>
+            </section>
+
+            <br><br><br><br><br><br>
+            <br><br><br><br><br><br><br>
+            <!--==================== ABOUT ====================-->
+            <section class="section about" id="about">
+                <div class="about__container container grid">
+                    <div class="about__data">
+                        <h2 class="section__title about__title"> ZENSTY Game App</h2>
+                        <p class="about__description"> We are not a single currency that matches ZENSTY Token to one game for the stability of the value of game money. Games released through the ZENSTY platform plan to use the ZENSTY Token.
+                        </p>
+                        <a href="https://play.google.com/store/apps/dev?id=8751979198937049408" class="button" target="_blank">More</a>
+                    </div>
+                    <img src="assets/img/mobile.png" alt="" class="about__img">
+                </div>
+            </section>
+
+            <br><br><br><br><br><br>
+            <br><br><br><br><br><br><br>
+            <!--==================== PHASE ====================-->
+            <section class="section phase" id="phase">
+                <h2 class="section__title">Road Map</h2>
+
+                <div class="phase__container container grid">
+                    <div class="phase__content">
+                        <h3 class="phase__title">PHASE 1</h3>
+                        <span class="phase__subtitle">ZST Token Airdrop.</span>
+                        <span class="phase__price">Q1 2022</span>
+                        <i class='bx bx-chevrons-down' ></i>
+                    </div>
+
+                    <div class="phase__content">
+                        <h3 class="phase__title">PHASE 2</h3>
+                        <span class="phase__subtitle">Bingo1to25 android App Update.</span>
+                        <span class="phase__subtitle">Girls Battlefield android App Update.</span>
+                        <span class="phase__price">Q2 2022</span>
+                        <i class='bx bx-chevrons-down' ></i>
+                    </div>
+
+                    <div class="phase__content">
+                        <h3 class="phase__title">PHASE 3</h3>
+                        <span class="phase__subtitle">Girls Battlefield 2 android App Update.</span>
+                        <span class="phase__subtitle">Girls Battlefield 3 android App Update.</span>
+                        <span class="phase__subtitle">Girls Battlefield S android App Update.</span>
+                        <span class="phase__price">Q3 2022</span>
+                        <i class='bx bx-chevrons-down' ></i>
+                    </div>
+
+                    <div class="phase__content">
+                        <h3 class="phase__title">PHASE 4</h3>
+                        <span class="phase__subtitle">Tower Of Legend android App Update.</span>
+                        <span class="phase__subtitle">Window Tiles android App Update.</span>
+                        <span class="phase__subtitle">Window Tiles 2 android App Update.</span>
+                        <span class="phase__price">Q4 2022</span>
+                        <i class='bx bx-chevrons-down' ></i>
+                    </div>
+
+                    <div class="phase__content">
+                        <h3 class="phase__title">PHASE 5</h3>
+                        <span class="phase__subtitle">ZENSTY android play games, earn real rewards App release.</span>
+                        <span class="phase__subtitle">Girls Battlefield NFT release.</span>
+                        <span class="phase__subtitle">Classic Voyage Metaverse development.</span>
+                        <span class="phase__price">2023</span>
+                        <i class='bx bx-chevrons-down' ></i>
+                    </div>
+
+                    <div class="phase__content">
+                        <h3 class="phase__title">PHASE 6</h3>
+                        <span class="phase__subtitle">Classic Voyage Metaverse developing.</span>
+                        <span class="phase__price">2024</span>
+                        <i class='bx bx-chevrons-down' ></i>
+                    </div>
+
+                    <div class="phase__content">
+                        <h3 class="phase__title">PHASE 7</h3>
+                        <span class="phase__subtitle">Classic Voyage Metaverse release.</span>
+                        <span class="phase__price">2025</span>
+                    </div>
+                    
+                </div>
+            </section>
+
+            <br><br><br><br><br><br>
+            <br><br><br><br><br><br><br>
+            <!--==================== NEW ARRIVALS ====================-->
+            <section class="section new" id="games">
+                <h2 class="section__title">App Development History</h2>
+
+                <div class="new__container container">
+
+                    <div class="swiper new-swiper">
+                        <div class="arrivals__container section__title">
+                            <i class='bx bx-chevrons-left' ></i>
+                            <i class='bx bx-chevrons-right'></i>
+                        </div>
+
+                        <div class="swiper-wrapper">
+
+                            <div class="new__content swiper-slide">
+                                <a href="https://play.google.com/store/apps/details?id=com.zensty.Bingo1to25"
+                                   target="_blank">
+                                    <img src="assets/img/mobileApp/app1-bingo.jpg" alt="" class="new__img">
+                                </a>
+                                <h3 class="new__title">BINGO 1to25</h3>
+                                <span class="new__subtitle">PUZZLE</span>
+                                <div class="new__prices">
+                                    <span class="new__price">Released : GLOBAL</span>
+                                </div>
+                            </div>
+                            
+                            <div class="new__content swiper-slide">
+                                <a href="https://play.google.com/store/apps/details?id=com.zensty.TowerOfLegend1"
+                                   target="_blank">
+                                    <img src="assets/img/mobileApp/app2-toweroflegend.jpg" alt="" class="new__img">
+                                </a>
+                                <h3 class="new__title">Tower of Legend</h3>
+                                <span class="new__subtitle">PUZZLE RPG</span>
+                                <div class="new__prices">
+                                    <span class="new__price">Released : SOUTH KOREA, JAPAN</span>
+                                </div>
+                            </div>
+
+                            <div class="new__content swiper-slide">
+                                <a href="https://play.google.com/store/apps/details?id=com.zensty.heroMathClassRoom_tel" 
+                                   target="_blank">
+                                    <img src="assets/img/mobileApp/app3-heroMath.jpg" alt="" class="new__img">
+                                </a>
+                                <h3 class="new__title">Hero Math</h3>
+                                <span class="new__subtitle">Education</span>
+                                <div class="new__prices">
+                                    <span class="new__price">Released : SOUTH KOREA</span>
+                                </div>
+                            </div>
+                            
+                            <div class="new__content swiper-slide">
+                                <a href="https://play.google.com/store/apps/details?id=com.zensty.warShe_tel"
+                                   target="_blank">
+                                    <img src="assets/img/mobileApp/app4-girlsBattlefield.jpg" alt="" class="new__img">
+                                </a>
+                                <h3 class="new__title">Girls Battlefield</h3>
+                                <span class="new__subtitle">Shooting Game</span>
+                                <div class="new__prices">
+                                    <span class="new__price">Released : GLOBAL</span>
+                                </div>
+                            </div>
+
+                            <div class="new__content swiper-slide">
+                                <a href="https://play.google.com/store/apps/details?id=com.zensty.warShe2_tel" 
+                                   target="_blank">
+                                    <img src="assets/img/mobileApp/app5-girlsBattlefield2.jpg" alt="" class="new__img">
+                                </a>
+                                <h3 class="new__title">Girls Battlefield2</h3>
+                                <span class="new__subtitle">Shooting Game</span>
+                                <div class="new__prices">
+                                    <span class="new__price">Released : USA, INDIA, JAPAN</span>
+                                </div>
+                            </div>
+            
+                            <div class="new__content swiper-slide">
+                                <a href="https://play.google.com/store/apps/details?id=com.zensty.warSheS" 
+                                   target="_blank">
+                                    <img src="assets/img/mobileApp/app6-girlsBattlefieldS.jpg" alt="" class="new__img">
+                                </a>
+                                <h3 class="new__title">Girls Battlefield S</h3>
+                                <span class="new__subtitle">Shooting Game</span>
+                                <div class="new__prices">
+                                    <span class="new__price">Released : SOUTH KOREA</span>
+                                </div>
+                            </div>
+
+                            <div class="new__content swiper-slide">
+                                <a href="https://m.onestore.co.kr/mobilepoc/apps/appsDetail.omp?prodId=0000742448" 
+                                   target="_blank">
+                                    <img src="assets/img/mobileApp/app7-girlsBattlefield3.jpg" alt="" class="new__img">
+                                </a>
+                                <h3 class="new__title">Girls Battlefield 3</h3>
+                                <span class="new__subtitle">Shooting Game</span>
+                                <div class="new__prices">
+                                    <span class="new__price">Released : SOUTH KOREA</span>
+                                </div>
+                            </div>
+
+                            <div class="new__content swiper-slide">
+                                <a href="https://play.google.com/store/apps/details?id=com.zensty.windowPianoTile"
+                                   target="_blank">
+                                    <img src="assets/img/mobileApp/app8-pianotile.jpg" alt="" class="new__img">
+                                </a>
+                                <h3 class="new__title">Window Tile</h3>
+                                <span class="new__subtitle">MUSIC PUZZLE</span>
+                                <div class="new__prices">
+                                    <span class="new__price">Released : GLOBAL</span>
+                                </div>
+                            </div>
+
+                            <div class="new__content swiper-slide">
+                                <a href="https://play.google.com/store/apps/details?id=com.zensty.windowTiles2" 
+                                   target="_blank">
+                                    <img src="assets/img/mobileApp/app9-pianotile2.jpg" alt="" class="new__img">
+                                </a>
+                                <h3 class="new__title">Window Tile 2</h3>
+                                <span class="new__subtitle">MUSIC PUZZLE</span>
+                                <div class="new__prices">
+                                    <span class="new__price">Released : THAILAND</span>
+                                </div>
+                            </div>
+
+                            <div class="new__content swiper-slide">
+                                <a href="https://m.onestore.co.kr/mobilepoc/apps/appsDetail.omp?prodId=0000681132" 
+                                   target="_blank">
+                                    <img src="assets/img/mobileApp/app10-pipeHeroes.jpg" alt="" class="new__img">
+                                </a>
+                                <h3 class="new__title">Pipe Heroes</h3>
+                                <span class="new__subtitle">PUZZLE DEFENSE</span>
+                                <div class="new__prices">
+                                    <span class="new__price">Released : SOUTH KOREA</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <br><br><br><br><br><br>
+            <br><br><br><br><br><br><br>
+            <!--==================== OUR NEWSLETTER ====================-->
+            
+            <section class="section newsletter">
+                <div class="newsletter__container container">
+                    <h2 class="section__title">Subscribe to our newsletter</h2>
+                    <p class="newsletter__description">
+                        Sign up for the latest news
+                    <br><br><br><br>
+                    <a href="https://forms.gle/Txihn4ahhdbqEahm8" class="button">SUBSCRIBE</a>                        
+                </p>
+                </div>
+            </section>
+        
+        </main>
+
+        <br><br><br><br>
+        <br><br><br><br><br>  
+        <!--==================== FOOTER ====================-->
+            <footer class="footer section">
+                <div class="footer__container container grid">
+                    <div class="footer__content">
+                        <a href="#" class="footer__logo">ZENSTY</a>
+                    </div>
+
+                    <div class="footer__content">
+                        <a href="#games"><h3 class="footer__title">Games</h3></a>
+                    </div>
+
+                    <div class="footer__content">
+                        <a href="#"><h3 class="footer__title">Whitepaper</h3></a>
+                    </div>
+
+                    <div class="footer__content">
+                        <div class="footer__social">
+                            <a href="https://twitter.com/zensty_chain" target="_blank" class="footer__social-link">
+                                <i class='bx bxl-twitter'></i>
+                            </a>
+                            <a href="https://t.me/zst_community/" target="_blank" class="footer__social-link">
+                                <i class='bx bxl-telegram' ></i>
+                            </a>
+                            <a href="https://medium.com/@zensty" target="_blank" class="footer__social-link">
+                                <i class='bx bxl-medium'></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+
+        <!--=============== SCROLL UP ===============-->
+        <a href="#" class="scrollup" id="scroll-up">
+            <i class='bx bx-up-arrow-alt scrollup__icon'></i>
+        </a>
+        
+        <!--=============== SCROLL REVEAL ===============-->
+        <script src="assets/js/scrollreveal.min.js"></script>
+
+        <!--=============== SWIPER JS ===============-->
+        <script src="assets/js/swiper-bundle.min.js"></script>
+        
+        <!--=============== MAIN JS ===============-->
+        <script src="assets/js/main.js"></script>
+
+    </body>
+
+</html>
