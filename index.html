@@ -33,9 +33,6 @@
             var userAddress;
             var saveAddress;
             var copyAddress = '...';
-
-            console.log("init 82");
-
             initWeb3();
 
             function initWeb3(){
@@ -46,7 +43,6 @@
                 } else {
                     // 사용자가 Metamask를 설치하지 않은 경우에 대해 처리
                     // 사용자들에게 Metamask를 설치하라는 등의 메세지를 보여줄 것
-                    console.log("D window.ethereum.isConnected() = "+window.ethereum.isConnected());
                     web3 = new Web3(new Web3.providers.HttpProvider(url));
                 }
             }
