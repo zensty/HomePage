@@ -5,8 +5,58 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <!--=============== CHART ===============-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js" integrity="sha512-GMGzUEevhWh8Tc/njS0bDpwgxdCJLQBWG3Z2Ct+JGOpVnEmjvNx6ts4v6A2XJf1HOrtOsfhv3hBKpK9kE5z8AQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+        <script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Pre-sale' ,'Strategic Sales','Game Operations','Team','Liquidity','Community'],
+            datasets: [{
+                label: 'ZST',
+                data: [20000000,500000000,1750000000,480000000,1000000000,1250000000],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.8)',
+                    'rgba(54, 162, 235, 0.8)',
+                    'rgba(255, 206, 86, 0.8)',
+                    'rgba(75, 192, 192, 0.8)',
+                    'rgba(153, 102, 255, 0.8)',
+                    'rgba(255, 159, 64, 0.8)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1,
+                hoverBorderWidth: 3,
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: false
+                    }
+                }]
+            },
+            spacing : 0,
+            borderRadius : 0,
+            hoverOffset : 10,
+            cutout : '50%',
+            responsive: false,
+            plugins:{
+                legend : {
+                display: false,
+                position: 'left'
+                }
+            }
+        }
+    });
+</script>
+        
         <!--=============== FAVICON ===============-->
         <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon/favicon-32x32.png">
@@ -120,7 +170,7 @@
                         </li>
 
                         <li class="nav__item">
-                            <a href="#" class="nav__link">Whitepaper</a>
+                            <a href="https://zensty-chain.gitbook.io/zensty-whitepaper/" class="nav__link">Whitepaper</a>
                         </li>
 
                         <li class="nav__item">
@@ -160,12 +210,23 @@
 
             <!--==================== HOME ====================-->
             <section class="home container" id="home">
-                <br><br><br><br><br><br><br><br><br><br><br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
                 <div class="about__container container grid">
 
                     <div class="about__data">
                         <h2 class="section__title about__title">THE KEY CURRENCY OF MOBILE GAMES</h2>
                         <p class="about__description">Perfect Play to Earn</p>
+                        <a href="#" class="button" onclick="c_alert()">Airdrop ZENSTY Token</a>
                     </div>
 
                 </div>
@@ -218,69 +279,102 @@
             <br><br><br><br><br><br><br>
             <!--==================== PHASE ====================-->
             <section class="section phase" id="phase">
-                <h2 class="section__title">Road Map</h2>
+                <h2 class="section__title">ROAD MAP</h2>
 
                 <div class="phase__container container grid">
                     <div class="phase__content">
+                        <!--<div class="new__tag">Upcoming</div>-->
                         <h3 class="phase__title">PHASE 1</h3>
-                        <span class="phase__subtitle">ZST Token Airdrop.</span>
-                        <!-- <span class="phase__price">Q1 2022</span> -->
+                        <span class="phase__subtitle">Girls Battlefield, Girls Battlefield 2, Girls Battlefield 3, Girls Battlefield S, Window Tiles, Window Tiles 2, Bingo 1 to 25, Hero Math Class, Lotto! one week of happiness Add token product and add wallet.</span>
+                        <span class="phase__subtitle">ZENSTY Token Airdrop.</span>
+                        <span class="phase__price">Q2 2022</span>
                         <i class='bx bx-chevrons-down' ></i>
                     </div>
 
                     <div class="phase__content">
                         <h3 class="phase__title">PHASE 2</h3>
-                        <span class="phase__subtitle">Bingo1to25 android App Update.</span>
-                        <span class="phase__subtitle">Girls Battlefield android App Update.</span>
-                        <!-- <span class="phase__price">Q2 2022</span>-->
+                        <span class="phase__subtitle">Girls Battlefield 2 android App Update content update.</span>
+                        <span class="phase__subtitle">Girls Battlefield 3 android App Update content update.</span>
+                        <span class="phase__subtitle">Girls Battlefield S android App Update content update.</span>
+                        <span class="phase__price">Q3 2022</span>
                         <i class='bx bx-chevrons-down' ></i>
                     </div>
 
                     <div class="phase__content">
+
                         <h3 class="phase__title">PHASE 3</h3>
-                        <span class="phase__subtitle">Girls Battlefield 2 android App Update.</span>
-                        <span class="phase__subtitle">Girls Battlefield 3 android App Update.</span>
-                        <span class="phase__subtitle">Girls Battlefield S android App Update.</span>
-                        <!-- <span class="phase__price">Q3 2022</span> -->
+                        <span class="phase__subtitle">Bingo1to25 android App content update.</span>
+                        <span class="phase__subtitle">Girls Battlefield android App content update.</span>
+                        <span class="phase__price">Q4 2022</span>
                         <i class='bx bx-chevrons-down' ></i>
                     </div>
 
                     <div class="phase__content">
+
                         <h3 class="phase__title">PHASE 4</h3>
-                        <span class="phase__subtitle">Tower Of Legend android App Update.</span>
-                        <span class="phase__subtitle">Window Tiles android App Update.</span>
-                        <span class="phase__subtitle">Window Tiles 2 android App Update.</span>
-                        <!-- <span class="phase__price">Q4 2022</span> -->
+                        <span class="phase__subtitle">Window Tiles android App Update content update.</span>
+                        <span class="phase__subtitle">Window Tiles 2 android App Update content update.</span>
+                        <span class="phase__subtitle">Hero Math Class android App Update content update.</span>
+                        <span class="phase__price">Q1 2023</span>
                         <i class='bx bx-chevrons-down' ></i>
                     </div>
 
                     <div class="phase__content">
+
                         <h3 class="phase__title">PHASE 5</h3>
-                        <span class="phase__subtitle">ZENSTY android play games, earn real rewards App release.</span>
-                        <span class="phase__subtitle">Girls Battlefield NFT release.</span>
-                        <span class="phase__subtitle">Classic Voyage Metaverse development.</span>
-                        <!-- <span class="phase__price">2023</span>-->
+                        <span class="phase__subtitle">pipe hero android App Add token product and add wallet.</span>
+                        <span class="phase__subtitle">pipe hero android App Update content update.</span>
+                        <span class="phase__subtitle">Girls Battlefield NFT issuance.</span>
+                        <span class="phase__price">Q2 2023</span>
                         <i class='bx bx-chevrons-down' ></i>
                     </div>
 
                     <div class="phase__content">
+                        
                         <h3 class="phase__title">PHASE 6</h3>
-                        <span class="phase__subtitle">Classic Voyage Metaverse developing.</span>
-                        <!-- <span class="phase__price">2024</span>-->
+                        <span class="phase__subtitle">ZENSTY Entertainment App (Gamble, Lottery) development.</span>
+                        <span class="phase__price">Q3 2023</span>
                         <i class='bx bx-chevrons-down' ></i>
                     </div>
 
                     <div class="phase__content">
+                        
                         <h3 class="phase__title">PHASE 7</h3>
-                        <span class="phase__subtitle">Classic Voyage Metaverse release.</span>
-                        <!-- <span class="phase__price">2025</span>-->
+                        <span class="phase__subtitle">ZENSTY Entertainment App (Gamble, Lottery) Release.</span>
+                        <span class="phase__subtitle">Age of Discovery metaverse game Development.</span>
+                        <span class="phase__price">Q4 2023</span>
+
                     </div>
-                    
                 </div>
             </section>
 
             <br><br><br><br><br><br>
             <br><br><br><br><br><br><br>
+            
+            <!--==================== tokenomics ====================-->
+            <section class="section tokenomics" id="tokenomics">
+
+                    <h2 class="section__title">Tokenomics</h2>
+
+                <div class="tokenomics__container container grid">
+                    
+                    <canvas class="tokenomics__chart" id="myChart"></canvas>
+                    <h2 class="tokenomics__data">
+                        <p style='color:rgba(255, 99, 132)'>Pre-Sale : 20,000,000 ZST</p>
+                        <p style='color:rgba(54,162,235)'>Strategic Sales : 500,000,000 ZST</p>
+                        <p style='color:rgba(255,206,86)'>Game Operations : 1,750,000,000 ZST</p>
+                        <p style='color:rgba(75,192,192)'>Team : 480,000,000 ZST</p>
+                        <p style='color:rgba(153,102,255)'>Liquidity : 1,000,000,000 ZST</p>
+                        <p style='color:rgba(255,159,64)'>Community : 1,250,000,000 ZST</p>
+                        <p>Total Suply ZENSTY Token : 5,000,000,000 ZST</p>
+                    </h2>
+                </div>
+            </section>
+            <br><br><br><br>
+            <br><br><br><br>
+            <br><br><br><br>
+            <br>
+            
 <!--==================== App Development History ====================-->
             <section class="section category" id="games">
                 <h2 class="section__title">ZENSTY GAMES</h2>
@@ -401,7 +495,8 @@
                     </div>
 
                     <div class="footer__content">
-                        <a href="#"><h3 class="footer__title">Whitepaper</h3></a>
+                        <a href="https://zensty-chain.gitbook.io/zensty-whitepaper/"><h3 class="footer__title">Whitepaper</h3></a>
+
                     </div>
 
                     <div class="footer__content">
@@ -409,7 +504,7 @@
                             <a href="https://twitter.com/zensty_chain" target="_blank" class="footer__social-link">
                                 <i class='bx bxl-twitter'></i>
                             </a>
-                            <a href="https://t.me/ZENSTY_COMMUNITY/" target="_blank" class="footer__social-link">
+                            <a href="https://t.me/zst_community/" target="_blank" class="footer__social-link">
                                 <i class='bx bxl-telegram' ></i>
                             </a>
                             <a href="https://medium.com/@zensty" target="_blank" class="footer__social-link">
