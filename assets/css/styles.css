@@ -471,8 +471,11 @@ button{
 }
 
 .phase__subtitle{
+  padding-left:3rem;
+  padding-right:3rem;
   font-size: var(--smaller-font-size);
   margin-bottom: var(--mb-0-5);
+  text-align: left;
 }
 
 .phase__title,
